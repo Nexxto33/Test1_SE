@@ -23,25 +23,6 @@ ser.reset_input_buffer()
 time.sleep(2)
 print("UART conectado en /dev/ttyACM0")
 
-# Función para medir distancia
-def medir_distancia():
-    GPIO.output(TRIG, GPIO.LOW) 
-    time.sleep(0.1)  
-    GPIO.output(TRIG, GPIO.HIGH) 
-    time.sleep(0.00001)  
-    GPIO.output(TRIG, GPIO.LOW)  
-
-    # Medir el tiempo de duración del pulso
-    while GPIO.input(ECHO) == GPIO.LOW:
-        inicio = time.time() 
-
-    while GPIO.input(ECHO) == GPIO.HIGH:
-        fin = time.time()  
-
-    duracion = fin - inicio  # Duración del pulso
-    distancia = duracion * 34300  # Calcular la distancia en cm
-    return int(distancia)
-
 def enviar_temperatura():
     while enviar_temp:
         temperatura = random.randint(-5, 25)
